@@ -7,14 +7,18 @@ public class PlayerController : MonoBehaviour
 {
     private Rigidbody rb;
     private int count;
+    private int score;
     public float speed;
     public Text countText;
+    public Text scoreText;
     public Text winText;
+
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         count = 0;
+        score = 0;
         winText.text = "";
         
     }
@@ -46,6 +50,15 @@ public class PlayerController : MonoBehaviour
             {
                 other.gameObject.SetActive(false);
                 count = count + 1;
+                score = score + 1;
+                SetCountText();
+            }
+
+            else if(other.gameObject.CompareTag("Enemy"))
+            {
+                other.gameObject.SetActive(false);
+                count = count + 1;
+                score = score - 1;
                 SetCountText();
             }
         }
@@ -53,6 +66,7 @@ public class PlayerController : MonoBehaviour
     private void SetCountText()
     {
         countText.text = "Count: " + count.ToString();
+        scoreText.text = "Score: " + score.ToString();
 
         if(count>= 12)
         {
