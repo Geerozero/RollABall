@@ -15,5 +15,13 @@ public class CameraController : MonoBehaviour
     void LateUpdate()
     {
         transform.position = player.transform.position + offset;
+
+        //Back up quit for when object is deactivated
+        //quit on hitting escape
+        if (Input.GetKey("escape"))
+        {
+            Application.Quit();
+
+        }
     }
 }
